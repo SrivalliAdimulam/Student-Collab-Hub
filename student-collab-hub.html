@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Collaboration Hub</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      background: #e0ffe0;
+    }
+
+    .hero h2 {
+      margin-bottom: 10px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      width: 220px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .post-board {
+      background: white;
+      margin: 20px auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 700px;
+      border-radius: 10px;
+    }
+
+    .post-board h3 {
+      margin-bottom: 10px;
+    }
+
+    #posts p {
+      background: #f9f9f9;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 5px;
+    }
+
+    #postInput {
+      width: 80%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    footer {
+      text-align: center;
+      background: #333;
+      color: white;
+      padding: 10px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎓 Student Collaboration Hub</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Projects</a>
+      <a href="#">Students</a>
+      <a href="#">Posts</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Connect. Collaborate. Grow.</h2>
+    <p>Find like-minded students and work on amazing projects together!</p>
+  </section>
+
+  <section id="cards" class="card-container">
+    <!-- Student Cards will be added by JavaScript -->
+  </section>
+
+  <section class="post-board">
+    <h3>📢 Announcements / Discussions</h3>
+    <div id="posts"></div>
+    <input type="text" id="postInput" placeholder="Share something..." />
+    <button onclick="addPost()">Post</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Student Collab Hub</p>
+  </footer>
+
+  <script>
+    const students = [
+      { name: "Aarav Sharma", topic: "AI Research", contact: "aarav@university.edu" },
+      { name: "Sneha Verma", topic: "Web Development", contact: "sneha@university.edu" },
+      { name: "Rahul Mehta", topic: "IoT & Sensors", contact: "rahul@university.edu" },
+      { name: "Anika Das", topic: "Cybersecurity Projects", contact: "anika@university.edu" },
+      { name: "Vikram Rao", topic: "Data Science", contact: "vikram@university.edu" },
+    ];
+
+    const cardsContainer = document.getElementById("cards");
+
+    students.forEach(student => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h4>${student.name}</h4>
+        <p><strong>Interest:</strong> ${student.topic}</p>
+        <p><strong>Email:</strong> ${student.contact}</p>
+      `;
+      cardsContainer.appendChild(card);
+    });
+
+    function addPost() {
+      const input = document.getElementById("postInput");
+      const text = input.value.trim();
+      if (text === "") return;
+
+      const post = document.createElement("p");
+      post.textContent = "🗣️ " + text;
+
+      document.getElementById("posts").appendChild(post);
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>
